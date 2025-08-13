@@ -19,7 +19,7 @@ const Mychats = ({ refresh, setRefresh }) => {
                 }
             };
 
-            const { data } = await axios.get('/api/chats', config);
+            const { data } = await axios.get('https://chat-app-backend-aqda.onrender.com/api/chats', config);
             setChats(data);
 
             // ✅ Preserve selectedChat if still exists in new list
@@ -60,7 +60,7 @@ const Mychats = ({ refresh, setRefresh }) => {
             };
 
             const { data } = await axios.put(
-                '/api/message/delete',
+                'https://chat-app-backend-aqda.onrender.com/api/message/delete',
                 { chatId: selectedChat._id },
                 config
             );

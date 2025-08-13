@@ -31,7 +31,7 @@ const AddUserToGroup = ({ children, refresh, setRefresh }) => {
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.get(`/api/user?search=${search}`, config)
+            const { data } = await axios.get(`https://chat-app-backend-aqda.onrender.com/api/user?search=${search}`, config)
             console.log(data)
             setSearchResult(data)
             setLoading(false)
@@ -50,14 +50,14 @@ const AddUserToGroup = ({ children, refresh, setRefresh }) => {
         }
     }
     const handleAddUser = (user) => {
-
         setSelectedUser(user) // it will put userId in selectedUser
         console.log(user)
-
     }
+
     const handledelete = () => {
         setSelectedUser()
     }
+
     const AddUserInGroup = async (user1) => {
         if (selectedChat.users.find((u) => u._id === user1._id)) {
             toast({
@@ -86,7 +86,7 @@ const AddUserToGroup = ({ children, refresh, setRefresh }) => {
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.put('/api/chats/groupadd', { chatId: selectedChat._id, userId: user1._id }, config)
+            const { data } = await axios.put('https://chat-app-backend-aqda.onrender.com/api/chats/groupadd', { chatId: selectedChat._id, userId: user1._id }, config)
             console.log(data)
             setSelectedChat(data)
             setRefresh(!refresh)
@@ -105,7 +105,7 @@ const AddUserToGroup = ({ children, refresh, setRefresh }) => {
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.put('/api/chats/rename', { chatId: selectedChat._id, chatName: groupReName }, config)
+            const { data } = await axios.put('https://chat-app-backend-aqda.onrender.com/api/chats/rename', { chatId: selectedChat._id, chatName: groupReName }, config)
             console.log(data)
             setSelectedChat(data)
             setRefresh(!refresh)

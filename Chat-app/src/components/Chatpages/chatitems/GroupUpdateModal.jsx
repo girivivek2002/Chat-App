@@ -31,7 +31,7 @@ const GroupUpdateModal = ({ users, refresh, setRefresh, fetchMessages }) => {  /
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.put('/api/chats/groupremove', { chatId: selectedChat._id, userId: userId }, config)
+            const { data } = await axios.put('https://chat-app-backend-aqda.onrender.com/api/chats/groupremove', { chatId: selectedChat._id, userId: userId }, config)
             userId !== user._id ? setSelectedChat() : setSelectedChat(data)
             console.log(data)
             fetchMessages();  // call fetchmessages from singlechat file to show messages

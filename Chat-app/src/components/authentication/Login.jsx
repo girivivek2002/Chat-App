@@ -31,7 +31,7 @@ const Login = () => {
           "Content-type": "application/json"
         }
       }
-      const { data } = await axios.post('/api/user/login', { email, password }, config)  // send all data 
+      const { data } = await axios.post('https://chat-app-backend-aqda.onrender.com/api/user/login', { email, password }, config)  // send all data 
       console.log(data)
       toast.success("register successful")
       localStorage.setItem("userInfo", JSON.stringify(data))

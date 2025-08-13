@@ -39,7 +39,7 @@ const Register = () => {
           "Content-type": "application/json"
         }
       }
-      const { data } = await axios.post('/api/user', { name, email, phoneNumber, password, image }, config)  // send all data 
+      const { data } = await axios.post('https://chat-app-backend-aqda.onrender.com/api/user', { name, email, phoneNumber, password, image }, config)  // send all data 
       console.log(data)
       toast.success("register successful")
       formRef.current.reset();  // for reset every field except image

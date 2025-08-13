@@ -35,7 +35,7 @@ const SingleChat = ({ refresh, setRefresh }) => {
     // logic for socket io for login user setup
     useEffect(() => {
         if (!user) return;
-        socket = io('http://localhost:3000') // backend address  // it will connect front to backend socket
+        socket = io('https://chat-app-backend-aqda.onrender.com') // backend address  // it will connect front to backend socket
 
 
         socket.emit("setup", user)  // send user to setup 
@@ -52,7 +52,7 @@ const SingleChat = ({ refresh, setRefresh }) => {
                 if (!notification.some(not => not._id === newMessagerecieve._id)) {
                     setNotification(prev => [newMessagerecieve, ...prev]);
 
-                    axios.post("/api/notification",
+                    axios.post("https://chat-app-backend-aqda.onrender.com/api/notification",
                         { notification: newMessagerecieve },
                         { headers: { Authorization: `Bearer ${user.token}` } }
                     );
@@ -104,7 +104,7 @@ const SingleChat = ({ refresh, setRefresh }) => {
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.get(`/api/message/${selectedChat._id}`, config)
+            const { data } = await axios.get(`https://chat-app-backend-aqda.onrender.com/api/message/${selectedChat._id}`, config)
             setMessage(data)
             setLoding(false)
             //console.log(message)
@@ -145,7 +145,7 @@ const SingleChat = ({ refresh, setRefresh }) => {
                         Authorization: `Bearer ${user.token}`
                     }
                 }
-                const { data } = await axios.post('/api/message', { chatId: selectedChat._id, content: newMessage }, config)
+                const { data } = await axios.post('https://chat-app-backend-aqda.onrender.com/api/message', { chatId: selectedChat._id, content: newMessage }, config)
                 setMessage([...message, data])
                 // console.log(data)
 
@@ -189,7 +189,7 @@ const SingleChat = ({ refresh, setRefresh }) => {
                         Authorization: `Bearer ${user.token}`
                     }
                 }
-                const { data } = await axios.post('/api/message', { chatId: selectedChat._id, content: newMessage }, config)
+                const { data } = await axios.post('https://chat-app-backend-aqda.onrender.com/api/message', { chatId: selectedChat._id, content: newMessage }, config)
                 setMessage([...message, data])
                 // console.log(data)
                 socket.emit('new-message', data)   // for socket io to send data

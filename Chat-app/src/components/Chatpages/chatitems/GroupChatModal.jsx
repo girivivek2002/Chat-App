@@ -34,7 +34,7 @@ const GroupChatModal = ({ children }) => {
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.get(`/api/user?search=${search}`, config)
+            const { data } = await axios.get(`https://chat-app-backend-aqda.onrender.com/api/user?search=${search}`, config)
             console.log(data)
             setSearchResult(data)
             setLoading(false)
@@ -92,7 +92,7 @@ const GroupChatModal = ({ children }) => {
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.post('/api/chats/group', { name: groupChatname, users: JSON.stringify(selectedUser.map((u) => u._id)) }, config)
+            const { data } = await axios.post('https://chat-app-backend-aqda.onrender.com/api/chats/group', { name: groupChatname, users: JSON.stringify(selectedUser.map((u) => u._id)) }, config)
             setChats([data, ...chats]) // add this data into chats at the top
             toast({
                 title: 'Create New Group',

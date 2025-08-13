@@ -53,7 +53,7 @@ const SideDrawer = () => {
                     Authorization: `Bearer ${user.token}`,
                 },
             }
-            const { data } = await axios.get(`/api/user?search=${search}`, config)
+            const { data } = await axios.get(`https://chat-app-backend-aqda.onrender.com/api/user?search=${search}`, config)
             setLoading(false)
             setSearchResult(data)
             console.log(data)
@@ -80,7 +80,7 @@ const SideDrawer = () => {
                     Authorization: `Bearer ${user.token}`
                 }
             }
-            const { data } = await axios.post('/api/chats', { userId }, config) // send user id to backend for chat pahge and create chat
+            const { data } = await axios.post('https://chat-app-backend-aqda.onrender.com/api/chats', { userId }, config) // send user id to backend for chat pahge and create chat
             if (!chats.find((c) => c._id === data._id)) setChats([data, ...chats]);  // if this chat not available in chat array then it will add new chat in chats array
             setSelectedChat(data)
             setLoadingChat(false)
@@ -102,7 +102,7 @@ const SideDrawer = () => {
 
     // for get notification when user login
     useEffect(() => {
-        axios.get("/api/notification", {
+        axios.get("https://chat-app-backend-aqda.onrender.com/api/notification", {
             headers: { Authorization: `Bearer ${user.token}` }
         }).then(res => {
             setNotification(res.data);
@@ -123,7 +123,7 @@ const SideDrawer = () => {
 
         // 3️⃣ Tell backend to remove it from database
         try {
-            await axios.delete("/api/notification", {
+            await axios.delete("https://chat-app-backend-aqda.onrender.com/api/notification", {
                 headers: { Authorization: `Bearer ${user.token}` },
                 data: { chatId: notifiactionchat.chat._id }
             });
@@ -144,7 +144,7 @@ const SideDrawer = () => {
 
                 // Remove from backend
                 try {
-                    await axios.delete("/api/notification", {
+                    await axios.delete("https://chat-app-backend-aqda.onrender.com/api/notification", {
                         headers: { Authorization: `Bearer ${user.token}` },
                         data: { chatId: selectedChat._id }
                     });
