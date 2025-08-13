@@ -28,7 +28,7 @@ app.use(express.json())
 const server = http.createServer(app); // Wrap express app with http
 
 const allowedOrigins = [
-    "https://chat-app-backend-aqda.onrender.com", // your deployed frontend
+    "https://chat-app-frontend-9y6y.onrender.com", // your deployed frontend
     "http://localhost:5173" // for local dev
 ];
 
