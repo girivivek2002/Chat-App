@@ -1,0 +1,25 @@
+.App {
+  height: 100vh;
+  display: flex;
+  background-image: url('./image/background.img.jpg');
+  background-position: center;
+  color: black;
+  justify-content: center;
+  align-items: center;
+
+
+
+
+}
+
+/* styles.css or inside a <style> tag if using inline */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
