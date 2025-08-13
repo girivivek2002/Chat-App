@@ -167,7 +167,7 @@ const Mychats = ({ refresh, setRefresh }) => {
                                 </Box>
                                 <Box marginTop="3px">
                                     <Menu>
-                                        <MenuButton as={Button}>
+                                        <MenuButton as={Button} onClick={(e) => e.stopPropagation()}>
                                             <MdMoreVert size={24} />
                                         </MenuButton>
                                         <MenuList bg="grey" color="black" p="10px">
