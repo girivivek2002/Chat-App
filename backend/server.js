@@ -21,24 +21,41 @@ connectDB() // it will connect to mongoDB Db
 
 
 // for socket.io connection
+
+app.use(express.json())
+
+
 const server = http.createServer(app); // Wrap express app with http
+
+const allowedOrigins = [
+    "https://chat-app-backend-aqda.onrender.com", // your deployed frontend
+    "http://localhost:5173" // for local dev
+];
+
+// Express CORS
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
+    credentials: true
+}));
+
+// Socket.IO CORS
 const io = new Server(server, {
     cors: {
-        origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-        methods: ['GET', 'POST'],
+        origin: allowedOrigins,
+        methods: ["GET", "POST"],
         credentials: true
     },
-    //optional
-    pingTimeout: 60000,      // 60 seconds - disconnects if no pong received
+    pingTimeout: 60000,     // 60 seconds - disconnects if no pong received
     pingInterval: 25000      // 25 seconds - sends a ping every 25s
 });
 
 
-app.use(express.json())
-app.use(cors({
-    origin: "http://localhost:5173",   // frontend path
-    credentials: true
-}));
 
 
 // no use just for fun
